@@ -17,13 +17,9 @@ export class LoginPage {
         await this.page.goto('/');
     }
 
-    async login(username, password) {
-        await this.page.fill(this.usernameField, username);
-        await this.page.fill(this.passwordField, password);
-        await this.page.click(this.loginButton);
-    }
-
-    async getErrorMessageText() {
-        return await this.page.locator(this.errorMessage).textContent();
+    async login(username = 'standard_user', password = process.env.SAUCE_DEMO_PASS) {
+        await this.usernameField.fill(username);
+        await this.passwordField.fill(password);
+        await this.loginButton.click();
     }
 }
