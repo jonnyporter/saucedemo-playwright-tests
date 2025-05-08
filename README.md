@@ -63,3 +63,6 @@ My initial approach is to become familiar with the application by exploring (exp
 * 'Reset app state' does not revert 'Remove' buttons to 'Add to cart' buttons
 
 * Login session is retained even when going back to login page, allowing for login an additional time.
+
+**Test Report:**
+<img width="500" alt="Screenshot 2025-05-08 at 8 52 53 AM" src="https://github.com/user-attachments/assets/60a5b141-43f1-465b-9c5e-6b86df660784" />
