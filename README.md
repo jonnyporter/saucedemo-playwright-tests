@@ -22,6 +22,14 @@ Project Setup
     ```bash
     npx playwright test --ui
     ```
+* **To Run All Tests:**
+    ```bash
+    npx playwright test
+    ```
+* **To Open The Report:** 
+    ```bash
+    npx playwright show-report
+    ```
 
 **Implementation Approach:**
 My initial approach is to become familiar with the application by exploring (exploratory testing). Identify which pages lead to where and how things are put together. I then build out a folder structure that represents what I saw during the initial exploratory testing phase. I also ask Gemini to build a POM structure for me as a two man check to help me organize the POM and make sure I am not missing anything. I took a look at the priorities of what should be tested in the test implementation steps. I then begin to build out POM as I go through the tests building mostly what is needed, I use chrome dev tools, playwright locator pickers, recorders, and copilot autocomplete to help me write locators more quickly. As I go through tests I notice areas that could be improved or reused such as login, and adding items to cart could be broken out into a function that lives in the POM, I consider a refactor down the line. In the interest of time I automate the tests I can but plan to break out reused blocks of code into helper functions that could simplify automation in the future.
