@@ -6,24 +6,33 @@ import { CartPage } from '../../pages/CartPage';
 import { CheckoutStepOnePage } from '../../pages/checkout/CheckoutStepOnePage';
 import { CheckoutStepTwoPage } from '../../pages/checkout/CheckoutStepTwoPage';
 import { CheckoutCompletePage } from '../../pages/checkout/CheckoutCompletePage';
+import { BasePage } from '../../pages/BasePage';
     
+test.beforeEach(async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await loginPage.login();
+});
+
+test.afterEach(async ({ page }) => {
+    const basePage = new BasePage(page);
+    await basePage.resetAppState();
+    await basePage.logout();
+});
+
 const firstName = 'Johnny';
 const lastName = 'Appleseed';
 const zipCode = '12345';
 
 test('Proceed through the checkout process and complete a purchase', async ({ page }) => {
 
-    // Login
-    const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
     const cartPage = new CartPage(page);
     const checkoutStepOnePage = new CheckoutStepOnePage(page);
     const checkoutStepTwoPage = new CheckoutStepTwoPage(page);
     const checkoutCompletePage = new CheckoutCompletePage(page);
-    await loginPage.goto();
-    await loginPage.login();
 
-    // Let page load
+    // Validate we are on the right page
     await expect(inventoryPage.pageTitle).toBeVisible();
 
     // Grab item details

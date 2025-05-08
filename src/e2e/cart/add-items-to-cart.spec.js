@@ -3,17 +3,26 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { InventoryPage } from '../../pages/products/InventoryPage';
 import { CartPage } from '../../pages/CartPage';
-    
-test('Add one or more items to the shopping cart', async ({ page }) => {
+import { BasePage } from '../../pages/BasePage';
 
-    // Login
+test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
-    const inventoryPage = new InventoryPage(page);
-    const cartPage = new CartPage(page);
     await loginPage.goto();
     await loginPage.login();
+});
 
-    // Let page load
+test.afterEach(async ({ page }) => {
+    const basePage = new BasePage(page);
+    await basePage.resetAppState();
+    await basePage.logout();
+});
+
+test('Add one or more items to the shopping cart', async ({ page }) => {
+
+    const inventoryPage = new InventoryPage(page);
+    const cartPage = new CartPage(page);
+
+    // Validate we are on the right page
     await expect(inventoryPage.pageTitle).toBeVisible();
 
     // Grab item details
