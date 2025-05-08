@@ -18,6 +18,8 @@ export class CartPage extends BasePage {
         this.itemDescriptionByIndex = (index) => this.inventoryItemByIndex(index).locator('[data-test="inventory-item-desc"]');
         this.itemPriceByIndex = (index) => this.inventoryItemByIndex(index).locator('[data-test="inventory-item-price"]');
         this.inventoryItemByIndex = (index) => page.locator('[data-test="inventory-item"]').nth(index);
+
+        this.checkoutButton = page.locator('[data-test="checkout"]');
     }
 
     async goto() {
